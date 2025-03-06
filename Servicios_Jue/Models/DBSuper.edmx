@@ -1,0 +1,1833 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBSuperModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CARGo">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Salario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CIUDad">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="CodigoDepartamento" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CLIEnte">
+          <Key>
+            <PropertyRef Name="Documento" />
+          </Key>
+          <Property Name="Documento" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PrimerApellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SegundoApellido" Type="varchar" MaxLength="50" />
+          <Property Name="Direccion" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="date" />
+          <Property Name="Email" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="COntactoPRoveedor">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Cargo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DocumentoProveedor" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DEPArtamento">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="CodigoPais" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DEtalleDEvolucion">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodigoDevolucion" Type="int" Nullable="false" />
+          <Property Name="CodigoProducto" Type="int" Nullable="false" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+          <Property Name="ValorUnitario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DEtalleFActura">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Numero" Type="int" Nullable="false" />
+          <Property Name="CodigoProducto" Type="int" Nullable="false" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+          <Property Name="ValorUnitario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DEtalleFacturaCompra">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumeroFactura" Type="int" Nullable="false" />
+          <Property Name="CodigoProducto" Type="int" Nullable="false" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+          <Property Name="ValorUnitario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DEVOlucion">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Documento" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="NumeroFactura" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="CodigoEmpleado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EMPLeado">
+          <Key>
+            <PropertyRef Name="Documento" />
+          </Key>
+          <Property Name="Documento" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PrimerApellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SegundoApellido" Type="varchar" MaxLength="50" />
+          <Property Name="Direccion" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="date" />
+        </EntityType>
+        <EntityType Name="EMpleadoCArgo">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Documento" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CodigoCargo" Type="int" Nullable="false" />
+          <Property Name="FechaInicio" Type="datetime" Nullable="false" />
+          <Property Name="FechaFin" Type="datetime" />
+          <Property Name="CodigoSucursal" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FACTura">
+          <Key>
+            <PropertyRef Name="Numero" />
+          </Key>
+          <Property Name="Numero" Type="int" Nullable="false" />
+          <Property Name="Documento" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="CodigoEmpleado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FActuraCOmpra">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" Nullable="false" />
+          <Property Name="CodigoEmpleado" Type="int" Nullable="false" />
+          <Property Name="DocumentoProveedor" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="FechaPago" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NOtaCRedito">
+          <Key>
+            <PropertyRef Name="Numero" />
+          </Key>
+          <Property Name="Numero" Type="int" Nullable="false" />
+          <Property Name="CodigoDevolucion" Type="int" Nullable="false" />
+          <Property Name="Valor" Type="int" Nullable="false" />
+          <Property Name="FechaValidez" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PAIS">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Perfil">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PaginaNavegar" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODucto">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+          <Property Name="ValorUnitario" Type="int" Nullable="false" />
+          <Property Name="CodigoTipoProducto" Type="int" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRoductoPRoveedor">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Documento" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CodigoProducto" Type="int" Nullable="false" />
+          <Property Name="ValorUnitario" Type="int" Nullable="false" />
+          <Property Name="FechaCotizacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaValidez" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PROVeedor">
+          <Key>
+            <PropertyRef Name="Documento" />
+          </Key>
+          <Property Name="Documento" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RazonSocial" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SitioWeb" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="SUCUrsal">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="NitSupermercado" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CodigoCiudad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SUPErmercado">
+          <Key>
+            <PropertyRef Name="Nit" />
+          </Key>
+          <Property Name="Nit" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SitioWeb" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TELEfono">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Numero" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Documento" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CodigoTipoTelefono" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TIpoPRoducto">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TIpoTElefono">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Documento_Empleado" Type="varchar" MaxLength="20" />
+          <Property Name="userName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Clave" Type="nvarchar" MaxLength="2000" Nullable="false" />
+          <Property Name="Salt" Type="nvarchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="Usuario_Perfil">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+          <Property Name="idPerfil" Type="int" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_COntactoPRoveedoreedor">
+          <End Role="PROVeedor" Type="Self.PROVeedor" Multiplicity="1" />
+          <End Role="COntactoPRoveedor" Type="Self.COntactoPRoveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVeedor">
+              <PropertyRef Name="Documento" />
+            </Principal>
+            <Dependent Role="COntactoPRoveedor">
+              <PropertyRef Name="DocumentoProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DEtalleDEvolucionlucion">
+          <End Role="DEVOlucion" Type="Self.DEVOlucion" Multiplicity="1" />
+          <End Role="DEtalleDEvolucion" Type="Self.DEtalleDEvolucion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEVOlucion">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="DEtalleDEvolucion">
+              <PropertyRef Name="CodigoDevolucion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DEtalleFacturaCompraucto">
+          <End Role="PRODucto" Type="Self.PRODucto" Multiplicity="1" />
+          <End Role="DEtalleFacturaCompra" Type="Self.DEtalleFacturaCompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODucto">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="DEtalleFacturaCompra">
+              <PropertyRef Name="CodigoProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DEtalleFacturaComprauraCOmpra">
+          <End Role="FActuraCOmpra" Type="Self.FActuraCOmpra" Multiplicity="1" />
+          <End Role="DEtalleFacturaCompra" Type="Self.DEtalleFacturaCompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FActuraCOmpra">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="DEtalleFacturaCompra">
+              <PropertyRef Name="NumeroFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DEtalleFActuraucto">
+          <End Role="PRODucto" Type="Self.PRODucto" Multiplicity="1" />
+          <End Role="DEtalleFActura" Type="Self.DEtalleFActura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODucto">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="DEtalleFActura">
+              <PropertyRef Name="CodigoProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DEtalleFActuraura">
+          <End Role="FACTura" Type="Self.FACTura" Multiplicity="1" />
+          <End Role="DEtalleFActura" Type="Self.DEtalleFActura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FACTura">
+              <PropertyRef Name="Numero" />
+            </Principal>
+            <Dependent Role="DEtalleFActura">
+              <PropertyRef Name="Numero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMpleadoCArgo_EMPLeado">
+          <End Role="EMPLeado" Type="Self.EMPLeado" Multiplicity="1" />
+          <End Role="EMpleadoCArgo" Type="Self.EMpleadoCArgo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLeado">
+              <PropertyRef Name="Documento" />
+            </Principal>
+            <Dependent Role="EMpleadoCArgo">
+              <PropertyRef Name="Documento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_EMPLeado">
+          <End Role="EMPLeado" Type="Self.EMPLeado" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLeado">
+              <PropertyRef Name="Documento" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="Documento_Empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Perfil_Perfil">
+          <End Role="Perfil" Type="Self.Perfil" Multiplicity="1" />
+          <End Role="Usuario_Perfil" Type="Self.Usuario_Perfil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfil">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Usuario_Perfil">
+              <PropertyRef Name="idPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Perfil_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Usuario_Perfil" Type="Self.Usuario_Perfil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Usuario_Perfil">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKCucursalCiudad">
+          <End Role="CIUDad" Type="Self.CIUDad" Multiplicity="1" />
+          <End Role="SUCUrsal" Type="Self.SUCUrsal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CIUDad">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="SUCUrsal">
+              <PropertyRef Name="CodigoCiudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDepartamento">
+          <End Role="DEPArtamento" Type="Self.DEPArtamento" Multiplicity="1" />
+          <End Role="CIUDad" Type="Self.CIUDad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPArtamento">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="CIUDad">
+              <PropertyRef Name="CodigoDepartamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDevollucionEmpleadoCArgo">
+          <End Role="EMpleadoCArgo" Type="Self.EMpleadoCArgo" Multiplicity="1" />
+          <End Role="DEVOlucion" Type="Self.DEVOlucion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMpleadoCArgo">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="DEVOlucion">
+              <PropertyRef Name="CodigoEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDevolucionCliente">
+          <End Role="CLIEnte" Type="Self.CLIEnte" Multiplicity="1" />
+          <End Role="DEVOlucion" Type="Self.DEVOlucion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIEnte">
+              <PropertyRef Name="Documento" />
+            </Principal>
+            <Dependent Role="DEVOlucion">
+              <PropertyRef Name="Documento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKEmpleadoCArgo">
+          <End Role="CARGo" Type="Self.CARGo" Multiplicity="1" />
+          <End Role="EMpleadoCArgo" Type="Self.EMpleadoCArgo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CARGo">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="EMpleadoCArgo">
+              <PropertyRef Name="CodigoCargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKEmpleadoCArgoSucursal">
+          <End Role="SUCUrsal" Type="Self.SUCUrsal" Multiplicity="1" />
+          <End Role="EMpleadoCArgo" Type="Self.EMpleadoCArgo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUCUrsal">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="EMpleadoCArgo">
+              <PropertyRef Name="CodigoSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKFacturaCliente">
+          <End Role="CLIEnte" Type="Self.CLIEnte" Multiplicity="1" />
+          <End Role="FACTura" Type="Self.FACTura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIEnte">
+              <PropertyRef Name="Documento" />
+            </Principal>
+            <Dependent Role="FACTura">
+              <PropertyRef Name="Documento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKFacturaCOmpraEmpleadoCArgo">
+          <End Role="EMpleadoCArgo" Type="Self.EMpleadoCArgo" Multiplicity="1" />
+          <End Role="FActuraCOmpra" Type="Self.FActuraCOmpra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMpleadoCArgo">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="FActuraCOmpra">
+              <PropertyRef Name="CodigoEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKFacturaCOmpraProveedor">
+          <End Role="PROVeedor" Type="Self.PROVeedor" Multiplicity="1" />
+          <End Role="FActuraCOmpra" Type="Self.FActuraCOmpra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVeedor">
+              <PropertyRef Name="Documento" />
+            </Principal>
+            <Dependent Role="FActuraCOmpra">
+              <PropertyRef Name="DocumentoProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKFacturaEmpleadoCArgo">
+          <End Role="EMpleadoCArgo" Type="Self.EMpleadoCArgo" Multiplicity="1" />
+          <End Role="FACTura" Type="Self.FACTura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMpleadoCArgo">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="FACTura">
+              <PropertyRef Name="CodigoEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKProducto_TIpoPRoducto">
+          <End Role="TIpoPRoducto" Type="Self.TIpoPRoducto" Multiplicity="1" />
+          <End Role="PRODucto" Type="Self.PRODucto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIpoPRoducto">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="PRODucto">
+              <PropertyRef Name="CodigoTipoProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKProductoPRoveedoructo">
+          <End Role="PRODucto" Type="Self.PRODucto" Multiplicity="1" />
+          <End Role="PRoductoPRoveedor" Type="Self.PRoductoPRoveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODucto">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="PRoductoPRoveedor">
+              <PropertyRef Name="CodigoProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKrtamento">
+          <End Role="PAIS" Type="Self.PAIS" Multiplicity="1" />
+          <End Role="DEPArtamento" Type="Self.DEPArtamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PAIS">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="DEPArtamento">
+              <PropertyRef Name="CodigoPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKSucursalSupermercado">
+          <End Role="SUPErmercado" Type="Self.SUPErmercado" Multiplicity="1" />
+          <End Role="SUCUrsal" Type="Self.SUCUrsal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUPErmercado">
+              <PropertyRef Name="Nit" />
+            </Principal>
+            <Dependent Role="SUCUrsal">
+              <PropertyRef Name="NitSupermercado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKTelefono_TIpoTElefono">
+          <End Role="TIpoTElefono" Type="Self.TIpoTElefono" Multiplicity="1" />
+          <End Role="TELEfono" Type="Self.TELEfono" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIpoTElefono">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="TELEfono">
+              <PropertyRef Name="CodigoTipoTelefono" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKTelefonoCliente">
+          <End Role="CLIEnte" Type="Self.CLIEnte" Multiplicity="1" />
+          <End Role="TELEfono" Type="Self.TELEfono" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIEnte">
+              <PropertyRef Name="Documento" />
+            </Principal>
+            <Dependent Role="TELEfono">
+              <PropertyRef Name="Documento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKuctoPRoveedoreedor">
+          <End Role="PROVeedor" Type="Self.PROVeedor" Multiplicity="1" />
+          <End Role="PRoductoPRoveedor" Type="Self.PRoductoPRoveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVeedor">
+              <PropertyRef Name="Documento" />
+            </Principal>
+            <Dependent Role="PRoductoPRoveedor">
+              <PropertyRef Name="Documento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBSuperModelStoreContainer">
+          <EntitySet Name="CARGo" EntityType="Self.CARGo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CIUDad" EntityType="Self.CIUDad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLIEnte" EntityType="Self.CLIEnte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COntactoPRoveedor" EntityType="Self.COntactoPRoveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DEPArtamento" EntityType="Self.DEPArtamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DEtalleDEvolucion" EntityType="Self.DEtalleDEvolucion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DEtalleFActura" EntityType="Self.DEtalleFActura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DEtalleFacturaCompra" EntityType="Self.DEtalleFacturaCompra" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DEVOlucion" EntityType="Self.DEVOlucion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMPLeado" EntityType="Self.EMPLeado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMpleadoCArgo" EntityType="Self.EMpleadoCArgo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FACTura" EntityType="Self.FACTura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FActuraCOmpra" EntityType="Self.FActuraCOmpra" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NOtaCRedito" EntityType="Self.NOtaCRedito" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PAIS" EntityType="Self.PAIS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Perfil" EntityType="Self.Perfil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODucto" EntityType="Self.PRODucto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRoductoPRoveedor" EntityType="Self.PRoductoPRoveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROVeedor" EntityType="Self.PROVeedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SUCUrsal" EntityType="Self.SUCUrsal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SUPErmercado" EntityType="Self.SUPErmercado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TELEfono" EntityType="Self.TELEfono" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIpoPRoducto" EntityType="Self.TIpoPRoducto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIpoTElefono" EntityType="Self.TIpoTElefono" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario_Perfil" EntityType="Self.Usuario_Perfil" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_COntactoPRoveedoreedor" Association="Self.FK_COntactoPRoveedoreedor">
+            <End Role="PROVeedor" EntitySet="PROVeedor" />
+            <End Role="COntactoPRoveedor" EntitySet="COntactoPRoveedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DEtalleDEvolucionlucion" Association="Self.FK_DEtalleDEvolucionlucion">
+            <End Role="DEVOlucion" EntitySet="DEVOlucion" />
+            <End Role="DEtalleDEvolucion" EntitySet="DEtalleDEvolucion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DEtalleFacturaCompraucto" Association="Self.FK_DEtalleFacturaCompraucto">
+            <End Role="PRODucto" EntitySet="PRODucto" />
+            <End Role="DEtalleFacturaCompra" EntitySet="DEtalleFacturaCompra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DEtalleFacturaComprauraCOmpra" Association="Self.FK_DEtalleFacturaComprauraCOmpra">
+            <End Role="FActuraCOmpra" EntitySet="FActuraCOmpra" />
+            <End Role="DEtalleFacturaCompra" EntitySet="DEtalleFacturaCompra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DEtalleFActuraucto" Association="Self.FK_DEtalleFActuraucto">
+            <End Role="PRODucto" EntitySet="PRODucto" />
+            <End Role="DEtalleFActura" EntitySet="DEtalleFActura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DEtalleFActuraura" Association="Self.FK_DEtalleFActuraura">
+            <End Role="FACTura" EntitySet="FACTura" />
+            <End Role="DEtalleFActura" EntitySet="DEtalleFActura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMpleadoCArgo_EMPLeado" Association="Self.FK_EMpleadoCArgo_EMPLeado">
+            <End Role="EMPLeado" EntitySet="EMPLeado" />
+            <End Role="EMpleadoCArgo" EntitySet="EMpleadoCArgo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_EMPLeado" Association="Self.FK_Usuario_EMPLeado">
+            <End Role="EMPLeado" EntitySet="EMPLeado" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Perfil_Perfil" Association="Self.FK_Usuario_Perfil_Perfil">
+            <End Role="Perfil" EntitySet="Perfil" />
+            <End Role="Usuario_Perfil" EntitySet="Usuario_Perfil" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Perfil_Usuario" Association="Self.FK_Usuario_Perfil_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Usuario_Perfil" EntitySet="Usuario_Perfil" />
+          </AssociationSet>
+          <AssociationSet Name="FKCucursalCiudad" Association="Self.FKCucursalCiudad">
+            <End Role="CIUDad" EntitySet="CIUDad" />
+            <End Role="SUCUrsal" EntitySet="SUCUrsal" />
+          </AssociationSet>
+          <AssociationSet Name="FKDepartamento" Association="Self.FKDepartamento">
+            <End Role="DEPArtamento" EntitySet="DEPArtamento" />
+            <End Role="CIUDad" EntitySet="CIUDad" />
+          </AssociationSet>
+          <AssociationSet Name="FKDevollucionEmpleadoCArgo" Association="Self.FKDevollucionEmpleadoCArgo">
+            <End Role="EMpleadoCArgo" EntitySet="EMpleadoCArgo" />
+            <End Role="DEVOlucion" EntitySet="DEVOlucion" />
+          </AssociationSet>
+          <AssociationSet Name="FKDevolucionCliente" Association="Self.FKDevolucionCliente">
+            <End Role="CLIEnte" EntitySet="CLIEnte" />
+            <End Role="DEVOlucion" EntitySet="DEVOlucion" />
+          </AssociationSet>
+          <AssociationSet Name="FKEmpleadoCArgo" Association="Self.FKEmpleadoCArgo">
+            <End Role="CARGo" EntitySet="CARGo" />
+            <End Role="EMpleadoCArgo" EntitySet="EMpleadoCArgo" />
+          </AssociationSet>
+          <AssociationSet Name="FKEmpleadoCArgoSucursal" Association="Self.FKEmpleadoCArgoSucursal">
+            <End Role="SUCUrsal" EntitySet="SUCUrsal" />
+            <End Role="EMpleadoCArgo" EntitySet="EMpleadoCArgo" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturaCliente" Association="Self.FKFacturaCliente">
+            <End Role="CLIEnte" EntitySet="CLIEnte" />
+            <End Role="FACTura" EntitySet="FACTura" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturaCOmpraEmpleadoCArgo" Association="Self.FKFacturaCOmpraEmpleadoCArgo">
+            <End Role="EMpleadoCArgo" EntitySet="EMpleadoCArgo" />
+            <End Role="FActuraCOmpra" EntitySet="FActuraCOmpra" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturaCOmpraProveedor" Association="Self.FKFacturaCOmpraProveedor">
+            <End Role="PROVeedor" EntitySet="PROVeedor" />
+            <End Role="FActuraCOmpra" EntitySet="FActuraCOmpra" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturaEmpleadoCArgo" Association="Self.FKFacturaEmpleadoCArgo">
+            <End Role="EMpleadoCArgo" EntitySet="EMpleadoCArgo" />
+            <End Role="FACTura" EntitySet="FACTura" />
+          </AssociationSet>
+          <AssociationSet Name="FKProducto_TIpoPRoducto" Association="Self.FKProducto_TIpoPRoducto">
+            <End Role="TIpoPRoducto" EntitySet="TIpoPRoducto" />
+            <End Role="PRODucto" EntitySet="PRODucto" />
+          </AssociationSet>
+          <AssociationSet Name="FKProductoPRoveedoructo" Association="Self.FKProductoPRoveedoructo">
+            <End Role="PRODucto" EntitySet="PRODucto" />
+            <End Role="PRoductoPRoveedor" EntitySet="PRoductoPRoveedor" />
+          </AssociationSet>
+          <AssociationSet Name="FKrtamento" Association="Self.FKrtamento">
+            <End Role="PAIS" EntitySet="PAIS" />
+            <End Role="DEPArtamento" EntitySet="DEPArtamento" />
+          </AssociationSet>
+          <AssociationSet Name="FKSucursalSupermercado" Association="Self.FKSucursalSupermercado">
+            <End Role="SUPErmercado" EntitySet="SUPErmercado" />
+            <End Role="SUCUrsal" EntitySet="SUCUrsal" />
+          </AssociationSet>
+          <AssociationSet Name="FKTelefono_TIpoTElefono" Association="Self.FKTelefono_TIpoTElefono">
+            <End Role="TIpoTElefono" EntitySet="TIpoTElefono" />
+            <End Role="TELEfono" EntitySet="TELEfono" />
+          </AssociationSet>
+          <AssociationSet Name="FKTelefonoCliente" Association="Self.FKTelefonoCliente">
+            <End Role="CLIEnte" EntitySet="CLIEnte" />
+            <End Role="TELEfono" EntitySet="TELEfono" />
+          </AssociationSet>
+          <AssociationSet Name="FKuctoPRoveedoreedor" Association="Self.FKuctoPRoveedoreedor">
+            <End Role="PROVeedor" EntitySet="PROVeedor" />
+            <End Role="PRoductoPRoveedor" EntitySet="PRoductoPRoveedor" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBSuperModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CARGo">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Salario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EMpleadoCArgoes" Relationship="Self.FKEmpleadoCArgo" FromRole="CARGo" ToRole="EMpleadoCArgo" />
+        </EntityType>
+        <EntityType Name="CIUDad">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="CodigoDepartamento" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SUCUrsals" Relationship="Self.FKCucursalCiudad" FromRole="CIUDad" ToRole="SUCUrsal" />
+          <NavigationProperty Name="DEPArtamento" Relationship="Self.FKDepartamento" FromRole="CIUDad" ToRole="DEPArtamento" />
+        </EntityType>
+        <EntityType Name="CLIEnte">
+          <Key>
+            <PropertyRef Name="Documento" />
+          </Key>
+          <Property Name="Documento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PrimerApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SegundoApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DEVOlucions" Relationship="Self.FKDevolucionCliente" FromRole="CLIEnte" ToRole="DEVOlucion" />
+          <NavigationProperty Name="FACTuras" Relationship="Self.FKFacturaCliente" FromRole="CLIEnte" ToRole="FACTura" />
+          <NavigationProperty Name="TELEfonoes" Relationship="Self.FKTelefonoCliente" FromRole="CLIEnte" ToRole="TELEfono" />
+        </EntityType>
+        <EntityType Name="COntactoPRoveedor">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cargo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DocumentoProveedor" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PROVeedor" Relationship="Self.FK_COntactoPRoveedoreedor" FromRole="COntactoPRoveedor" ToRole="PROVeedor" />
+        </EntityType>
+        <EntityType Name="DEPArtamento">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="CodigoPais" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CIUDads" Relationship="Self.FKDepartamento" FromRole="DEPArtamento" ToRole="CIUDad" />
+          <NavigationProperty Name="PAI" Relationship="Self.FKrtamento" FromRole="DEPArtamento" ToRole="PAIS" />
+        </EntityType>
+        <EntityType Name="DEtalleDEvolucion">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoDevolucion" Type="Int32" Nullable="false" />
+          <Property Name="CodigoProducto" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="ValorUnitario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DEVOlucion" Relationship="Self.FK_DEtalleDEvolucionlucion" FromRole="DEtalleDEvolucion" ToRole="DEVOlucion" />
+        </EntityType>
+        <EntityType Name="DEtalleFActura">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Numero" Type="Int32" Nullable="false" />
+          <Property Name="CodigoProducto" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="ValorUnitario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PRODucto" Relationship="Self.FK_DEtalleFActuraucto" FromRole="DEtalleFActura" ToRole="PRODucto" />
+          <NavigationProperty Name="FACTura" Relationship="Self.FK_DEtalleFActuraura" FromRole="DEtalleFActura" ToRole="FACTura" />
+        </EntityType>
+        <EntityType Name="DEtalleFacturaCompra">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumeroFactura" Type="Int32" Nullable="false" />
+          <Property Name="CodigoProducto" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="ValorUnitario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PRODucto" Relationship="Self.FK_DEtalleFacturaCompraucto" FromRole="DEtalleFacturaCompra" ToRole="PRODucto" />
+          <NavigationProperty Name="FActuraCOmpra" Relationship="Self.FK_DEtalleFacturaComprauraCOmpra" FromRole="DEtalleFacturaCompra" ToRole="FActuraCOmpra" />
+        </EntityType>
+        <EntityType Name="DEVOlucion">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Documento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NumeroFactura" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CodigoEmpleado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CLIEnte" Relationship="Self.FKDevolucionCliente" FromRole="DEVOlucion" ToRole="CLIEnte" />
+          <NavigationProperty Name="DEtalleDEvolucions" Relationship="Self.FK_DEtalleDEvolucionlucion" FromRole="DEVOlucion" ToRole="DEtalleDEvolucion" />
+          <NavigationProperty Name="EMpleadoCArgo" Relationship="Self.FKDevollucionEmpleadoCArgo" FromRole="DEVOlucion" ToRole="EMpleadoCArgo" />
+        </EntityType>
+        <EntityType Name="EMPLeado">
+          <Key>
+            <PropertyRef Name="Documento" />
+          </Key>
+          <Property Name="Documento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PrimerApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SegundoApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="EMpleadoCArgoes" Relationship="Self.FK_EMpleadoCArgo_EMPLeado" FromRole="EMPLeado" ToRole="EMpleadoCArgo" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuario_EMPLeado" FromRole="EMPLeado" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="EMpleadoCArgo">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Documento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CodigoCargo" Type="Int32" Nullable="false" />
+          <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaFin" Type="DateTime" Precision="3" />
+          <Property Name="CodigoSucursal" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CARGo" Relationship="Self.FKEmpleadoCArgo" FromRole="EMpleadoCArgo" ToRole="CARGo" />
+          <NavigationProperty Name="DEVOlucions" Relationship="Self.FKDevollucionEmpleadoCArgo" FromRole="EMpleadoCArgo" ToRole="DEVOlucion" />
+          <NavigationProperty Name="EMPLeado" Relationship="Self.FK_EMpleadoCArgo_EMPLeado" FromRole="EMpleadoCArgo" ToRole="EMPLeado" />
+          <NavigationProperty Name="SUCUrsal" Relationship="Self.FKEmpleadoCArgoSucursal" FromRole="EMpleadoCArgo" ToRole="SUCUrsal" />
+          <NavigationProperty Name="FActuraCOmpras" Relationship="Self.FKFacturaCOmpraEmpleadoCArgo" FromRole="EMpleadoCArgo" ToRole="FActuraCOmpra" />
+          <NavigationProperty Name="FACTuras" Relationship="Self.FKFacturaEmpleadoCArgo" FromRole="EMpleadoCArgo" ToRole="FACTura" />
+        </EntityType>
+        <EntityType Name="FACTura">
+          <Key>
+            <PropertyRef Name="Numero" />
+          </Key>
+          <Property Name="Numero" Type="Int32" Nullable="false" />
+          <Property Name="Documento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CodigoEmpleado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CLIEnte" Relationship="Self.FKFacturaCliente" FromRole="FACTura" ToRole="CLIEnte" />
+          <NavigationProperty Name="DEtalleFActuras" Relationship="Self.FK_DEtalleFActuraura" FromRole="FACTura" ToRole="DEtalleFActura" />
+          <NavigationProperty Name="EMpleadoCArgo" Relationship="Self.FKFacturaEmpleadoCArgo" FromRole="FACTura" ToRole="EMpleadoCArgo" />
+        </EntityType>
+        <EntityType Name="FActuraCOmpra">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" />
+          <Property Name="CodigoEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="DocumentoProveedor" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaPago" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="DEtalleFacturaCompras" Relationship="Self.FK_DEtalleFacturaComprauraCOmpra" FromRole="FActuraCOmpra" ToRole="DEtalleFacturaCompra" />
+          <NavigationProperty Name="EMpleadoCArgo" Relationship="Self.FKFacturaCOmpraEmpleadoCArgo" FromRole="FActuraCOmpra" ToRole="EMpleadoCArgo" />
+          <NavigationProperty Name="PROVeedor" Relationship="Self.FKFacturaCOmpraProveedor" FromRole="FActuraCOmpra" ToRole="PROVeedor" />
+        </EntityType>
+        <EntityType Name="NOtaCRedito">
+          <Key>
+            <PropertyRef Name="Numero" />
+          </Key>
+          <Property Name="Numero" Type="Int32" Nullable="false" />
+          <Property Name="CodigoDevolucion" Type="Int32" Nullable="false" />
+          <Property Name="Valor" Type="Int32" Nullable="false" />
+          <Property Name="FechaValidez" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="PAI">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="DEPArtamentoes" Relationship="Self.FKrtamento" FromRole="PAIS" ToRole="DEPArtamento" />
+        </EntityType>
+        <EntityType Name="Perfil">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PaginaNavegar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Usuario_Perfil" Relationship="Self.FK_Usuario_Perfil_Perfil" FromRole="Perfil" ToRole="Usuario_Perfil" />
+        </EntityType>
+        <EntityType Name="PRODucto">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="ValorUnitario" Type="Int32" Nullable="false" />
+          <Property Name="CodigoTipoProducto" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DEtalleFActuras" Relationship="Self.FK_DEtalleFActuraucto" FromRole="PRODucto" ToRole="DEtalleFActura" />
+          <NavigationProperty Name="DEtalleFacturaCompras" Relationship="Self.FK_DEtalleFacturaCompraucto" FromRole="PRODucto" ToRole="DEtalleFacturaCompra" />
+          <NavigationProperty Name="TIpoPRoducto" Relationship="Self.FKProducto_TIpoPRoducto" FromRole="PRODucto" ToRole="TIpoPRoducto" />
+          <NavigationProperty Name="PRoductoPRoveedors" Relationship="Self.FKProductoPRoveedoructo" FromRole="PRODucto" ToRole="PRoductoPRoveedor" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRoductoPRoveedor">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Documento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CodigoProducto" Type="Int32" Nullable="false" />
+          <Property Name="ValorUnitario" Type="Int32" Nullable="false" />
+          <Property Name="FechaCotizacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaValidez" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="PRODucto" Relationship="Self.FKProductoPRoveedoructo" FromRole="PRoductoPRoveedor" ToRole="PRODucto" />
+          <NavigationProperty Name="PROVeedor" Relationship="Self.FKuctoPRoveedoreedor" FromRole="PRoductoPRoveedor" ToRole="PROVeedor" />
+        </EntityType>
+        <EntityType Name="PROVeedor">
+          <Key>
+            <PropertyRef Name="Documento" />
+          </Key>
+          <Property Name="Documento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RazonSocial" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SitioWeb" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="COntactoPRoveedors" Relationship="Self.FK_COntactoPRoveedoreedor" FromRole="PROVeedor" ToRole="COntactoPRoveedor" />
+          <NavigationProperty Name="FActuraCOmpras" Relationship="Self.FKFacturaCOmpraProveedor" FromRole="PROVeedor" ToRole="FActuraCOmpra" />
+          <NavigationProperty Name="PRoductoPRoveedors" Relationship="Self.FKuctoPRoveedoreedor" FromRole="PROVeedor" ToRole="PRoductoPRoveedor" />
+        </EntityType>
+        <EntityType Name="SUCUrsal">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NitSupermercado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CodigoCiudad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CIUDad" Relationship="Self.FKCucursalCiudad" FromRole="SUCUrsal" ToRole="CIUDad" />
+          <NavigationProperty Name="EMpleadoCArgoes" Relationship="Self.FKEmpleadoCArgoSucursal" FromRole="SUCUrsal" ToRole="EMpleadoCArgo" />
+          <NavigationProperty Name="SUPErmercado" Relationship="Self.FKSucursalSupermercado" FromRole="SUCUrsal" ToRole="SUPErmercado" />
+        </EntityType>
+        <EntityType Name="SUPErmercado">
+          <Key>
+            <PropertyRef Name="Nit" />
+          </Key>
+          <Property Name="Nit" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SitioWeb" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="SUCUrsals" Relationship="Self.FKSucursalSupermercado" FromRole="SUPErmercado" ToRole="SUCUrsal" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TELEfono">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Numero" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Documento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CodigoTipoTelefono" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CLIEnte" Relationship="Self.FKTelefonoCliente" FromRole="TELEfono" ToRole="CLIEnte" />
+          <NavigationProperty Name="TIpoTElefono" Relationship="Self.FKTelefono_TIpoTElefono" FromRole="TELEfono" ToRole="TIpoTElefono" />
+        </EntityType>
+        <EntityType Name="TIpoPRoducto">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="PRODuctoes" Relationship="Self.FKProducto_TIpoPRoducto" FromRole="TIpoPRoducto" ToRole="PRODucto" />
+        </EntityType>
+        <EntityType Name="TIpoTElefono">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TELEfonoes" Relationship="Self.FKTelefono_TIpoTElefono" FromRole="TIpoTElefono" ToRole="TELEfono" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Documento_Empleado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Clave" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Salt" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EMPLeado" Relationship="Self.FK_Usuario_EMPLeado" FromRole="Usuario" ToRole="EMPLeado" />
+          <NavigationProperty Name="Usuario_Perfil" Relationship="Self.FK_Usuario_Perfil_Usuario" FromRole="Usuario" ToRole="Usuario_Perfil" />
+        </EntityType>
+        <EntityType Name="Usuario_Perfil">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <Property Name="idPerfil" Type="Int32" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Perfil" Relationship="Self.FK_Usuario_Perfil_Perfil" FromRole="Usuario_Perfil" ToRole="Perfil" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Usuario_Perfil_Usuario" FromRole="Usuario_Perfil" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FKEmpleadoCArgo">
+          <End Role="CARGo" Type="Self.CARGo" Multiplicity="1" />
+          <End Role="EMpleadoCArgo" Type="Self.EMpleadoCArgo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CARGo">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="EMpleadoCArgo">
+              <PropertyRef Name="CodigoCargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKCucursalCiudad">
+          <End Role="CIUDad" Type="Self.CIUDad" Multiplicity="1" />
+          <End Role="SUCUrsal" Type="Self.SUCUrsal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CIUDad">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="SUCUrsal">
+              <PropertyRef Name="CodigoCiudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDepartamento">
+          <End Role="DEPArtamento" Type="Self.DEPArtamento" Multiplicity="1" />
+          <End Role="CIUDad" Type="Self.CIUDad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPArtamento">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="CIUDad">
+              <PropertyRef Name="CodigoDepartamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDevolucionCliente">
+          <End Role="CLIEnte" Type="Self.CLIEnte" Multiplicity="1" />
+          <End Role="DEVOlucion" Type="Self.DEVOlucion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIEnte">
+              <PropertyRef Name="Documento" />
+            </Principal>
+            <Dependent Role="DEVOlucion">
+              <PropertyRef Name="Documento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKFacturaCliente">
+          <End Role="CLIEnte" Type="Self.CLIEnte" Multiplicity="1" />
+          <End Role="FACTura" Type="Self.FACTura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIEnte">
+              <PropertyRef Name="Documento" />
+            </Principal>
+            <Dependent Role="FACTura">
+              <PropertyRef Name="Documento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKTelefonoCliente">
+          <End Role="CLIEnte" Type="Self.CLIEnte" Multiplicity="1" />
+          <End Role="TELEfono" Type="Self.TELEfono" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIEnte">
+              <PropertyRef Name="Documento" />
+            </Principal>
+            <Dependent Role="TELEfono">
+              <PropertyRef Name="Documento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COntactoPRoveedoreedor">
+          <End Role="PROVeedor" Type="Self.PROVeedor" Multiplicity="1" />
+          <End Role="COntactoPRoveedor" Type="Self.COntactoPRoveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVeedor">
+              <PropertyRef Name="Documento" />
+            </Principal>
+            <Dependent Role="COntactoPRoveedor">
+              <PropertyRef Name="DocumentoProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKrtamento">
+          <End Role="PAIS" Type="Self.PAI" Multiplicity="1" />
+          <End Role="DEPArtamento" Type="Self.DEPArtamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PAIS">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="DEPArtamento">
+              <PropertyRef Name="CodigoPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DEtalleDEvolucionlucion">
+          <End Role="DEVOlucion" Type="Self.DEVOlucion" Multiplicity="1" />
+          <End Role="DEtalleDEvolucion" Type="Self.DEtalleDEvolucion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEVOlucion">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="DEtalleDEvolucion">
+              <PropertyRef Name="CodigoDevolucion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DEtalleFActuraucto">
+          <End Role="PRODucto" Type="Self.PRODucto" Multiplicity="1" />
+          <End Role="DEtalleFActura" Type="Self.DEtalleFActura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODucto">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="DEtalleFActura">
+              <PropertyRef Name="CodigoProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DEtalleFActuraura">
+          <End Role="FACTura" Type="Self.FACTura" Multiplicity="1" />
+          <End Role="DEtalleFActura" Type="Self.DEtalleFActura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FACTura">
+              <PropertyRef Name="Numero" />
+            </Principal>
+            <Dependent Role="DEtalleFActura">
+              <PropertyRef Name="Numero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DEtalleFacturaCompraucto">
+          <End Role="PRODucto" Type="Self.PRODucto" Multiplicity="1" />
+          <End Role="DEtalleFacturaCompra" Type="Self.DEtalleFacturaCompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODucto">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="DEtalleFacturaCompra">
+              <PropertyRef Name="CodigoProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DEtalleFacturaComprauraCOmpra">
+          <End Role="FActuraCOmpra" Type="Self.FActuraCOmpra" Multiplicity="1" />
+          <End Role="DEtalleFacturaCompra" Type="Self.DEtalleFacturaCompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FActuraCOmpra">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="DEtalleFacturaCompra">
+              <PropertyRef Name="NumeroFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDevollucionEmpleadoCArgo">
+          <End Role="EMpleadoCArgo" Type="Self.EMpleadoCArgo" Multiplicity="1" />
+          <End Role="DEVOlucion" Type="Self.DEVOlucion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMpleadoCArgo">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="DEVOlucion">
+              <PropertyRef Name="CodigoEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMpleadoCArgo_EMPLeado">
+          <End Role="EMPLeado" Type="Self.EMPLeado" Multiplicity="1" />
+          <End Role="EMpleadoCArgo" Type="Self.EMpleadoCArgo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLeado">
+              <PropertyRef Name="Documento" />
+            </Principal>
+            <Dependent Role="EMpleadoCArgo">
+              <PropertyRef Name="Documento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_EMPLeado">
+          <End Role="EMPLeado" Type="Self.EMPLeado" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLeado">
+              <PropertyRef Name="Documento" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="Documento_Empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKEmpleadoCArgoSucursal">
+          <End Role="SUCUrsal" Type="Self.SUCUrsal" Multiplicity="1" />
+          <End Role="EMpleadoCArgo" Type="Self.EMpleadoCArgo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUCUrsal">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="EMpleadoCArgo">
+              <PropertyRef Name="CodigoSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKFacturaCOmpraEmpleadoCArgo">
+          <End Role="EMpleadoCArgo" Type="Self.EMpleadoCArgo" Multiplicity="1" />
+          <End Role="FActuraCOmpra" Type="Self.FActuraCOmpra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMpleadoCArgo">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="FActuraCOmpra">
+              <PropertyRef Name="CodigoEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKFacturaEmpleadoCArgo">
+          <End Role="EMpleadoCArgo" Type="Self.EMpleadoCArgo" Multiplicity="1" />
+          <End Role="FACTura" Type="Self.FACTura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMpleadoCArgo">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="FACTura">
+              <PropertyRef Name="CodigoEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKFacturaCOmpraProveedor">
+          <End Role="PROVeedor" Type="Self.PROVeedor" Multiplicity="1" />
+          <End Role="FActuraCOmpra" Type="Self.FActuraCOmpra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVeedor">
+              <PropertyRef Name="Documento" />
+            </Principal>
+            <Dependent Role="FActuraCOmpra">
+              <PropertyRef Name="DocumentoProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Perfil_Perfil">
+          <End Role="Perfil" Type="Self.Perfil" Multiplicity="1" />
+          <End Role="Usuario_Perfil" Type="Self.Usuario_Perfil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfil">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Usuario_Perfil">
+              <PropertyRef Name="idPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKProducto_TIpoPRoducto">
+          <End Role="TIpoPRoducto" Type="Self.TIpoPRoducto" Multiplicity="1" />
+          <End Role="PRODucto" Type="Self.PRODucto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIpoPRoducto">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="PRODucto">
+              <PropertyRef Name="CodigoTipoProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKProductoPRoveedoructo">
+          <End Role="PRODucto" Type="Self.PRODucto" Multiplicity="1" />
+          <End Role="PRoductoPRoveedor" Type="Self.PRoductoPRoveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODucto">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="PRoductoPRoveedor">
+              <PropertyRef Name="CodigoProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKuctoPRoveedoreedor">
+          <End Role="PROVeedor" Type="Self.PROVeedor" Multiplicity="1" />
+          <End Role="PRoductoPRoveedor" Type="Self.PRoductoPRoveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVeedor">
+              <PropertyRef Name="Documento" />
+            </Principal>
+            <Dependent Role="PRoductoPRoveedor">
+              <PropertyRef Name="Documento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKSucursalSupermercado">
+          <End Role="SUPErmercado" Type="Self.SUPErmercado" Multiplicity="1" />
+          <End Role="SUCUrsal" Type="Self.SUCUrsal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUPErmercado">
+              <PropertyRef Name="Nit" />
+            </Principal>
+            <Dependent Role="SUCUrsal">
+              <PropertyRef Name="NitSupermercado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKTelefono_TIpoTElefono">
+          <End Role="TIpoTElefono" Type="Self.TIpoTElefono" Multiplicity="1" />
+          <End Role="TELEfono" Type="Self.TELEfono" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIpoTElefono">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="TELEfono">
+              <PropertyRef Name="CodigoTipoTelefono" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Perfil_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Usuario_Perfil" Type="Self.Usuario_Perfil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Usuario_Perfil">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBSuperEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CARGoes" EntityType="Self.CARGo" />
+          <EntitySet Name="CIUDads" EntityType="Self.CIUDad" />
+          <EntitySet Name="CLIEntes" EntityType="Self.CLIEnte" />
+          <EntitySet Name="COntactoPRoveedors" EntityType="Self.COntactoPRoveedor" />
+          <EntitySet Name="DEPArtamentoes" EntityType="Self.DEPArtamento" />
+          <EntitySet Name="DEtalleDEvolucions" EntityType="Self.DEtalleDEvolucion" />
+          <EntitySet Name="DEtalleFActuras" EntityType="Self.DEtalleFActura" />
+          <EntitySet Name="DEtalleFacturaCompras" EntityType="Self.DEtalleFacturaCompra" />
+          <EntitySet Name="DEVOlucions" EntityType="Self.DEVOlucion" />
+          <EntitySet Name="EMPLeadoes" EntityType="Self.EMPLeado" />
+          <EntitySet Name="EMpleadoCArgoes" EntityType="Self.EMpleadoCArgo" />
+          <EntitySet Name="FACTuras" EntityType="Self.FACTura" />
+          <EntitySet Name="FActuraCOmpras" EntityType="Self.FActuraCOmpra" />
+          <EntitySet Name="NOtaCReditoes" EntityType="Self.NOtaCRedito" />
+          <EntitySet Name="PAIS" EntityType="Self.PAI" />
+          <EntitySet Name="Perfils" EntityType="Self.Perfil" />
+          <EntitySet Name="PRODuctoes" EntityType="Self.PRODucto" />
+          <EntitySet Name="PRoductoPRoveedors" EntityType="Self.PRoductoPRoveedor" />
+          <EntitySet Name="PROVeedors" EntityType="Self.PROVeedor" />
+          <EntitySet Name="SUCUrsals" EntityType="Self.SUCUrsal" />
+          <EntitySet Name="SUPErmercadoes" EntityType="Self.SUPErmercado" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TELEfonoes" EntityType="Self.TELEfono" />
+          <EntitySet Name="TIpoPRoductoes" EntityType="Self.TIpoPRoducto" />
+          <EntitySet Name="TIpoTElefonoes" EntityType="Self.TIpoTElefono" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+          <EntitySet Name="Usuario_Perfil" EntityType="Self.Usuario_Perfil" />
+          <AssociationSet Name="FKEmpleadoCArgo" Association="Self.FKEmpleadoCArgo">
+            <End Role="CARGo" EntitySet="CARGoes" />
+            <End Role="EMpleadoCArgo" EntitySet="EMpleadoCArgoes" />
+          </AssociationSet>
+          <AssociationSet Name="FKCucursalCiudad" Association="Self.FKCucursalCiudad">
+            <End Role="CIUDad" EntitySet="CIUDads" />
+            <End Role="SUCUrsal" EntitySet="SUCUrsals" />
+          </AssociationSet>
+          <AssociationSet Name="FKDepartamento" Association="Self.FKDepartamento">
+            <End Role="DEPArtamento" EntitySet="DEPArtamentoes" />
+            <End Role="CIUDad" EntitySet="CIUDads" />
+          </AssociationSet>
+          <AssociationSet Name="FKDevolucionCliente" Association="Self.FKDevolucionCliente">
+            <End Role="CLIEnte" EntitySet="CLIEntes" />
+            <End Role="DEVOlucion" EntitySet="DEVOlucions" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturaCliente" Association="Self.FKFacturaCliente">
+            <End Role="CLIEnte" EntitySet="CLIEntes" />
+            <End Role="FACTura" EntitySet="FACTuras" />
+          </AssociationSet>
+          <AssociationSet Name="FKTelefonoCliente" Association="Self.FKTelefonoCliente">
+            <End Role="CLIEnte" EntitySet="CLIEntes" />
+            <End Role="TELEfono" EntitySet="TELEfonoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COntactoPRoveedoreedor" Association="Self.FK_COntactoPRoveedoreedor">
+            <End Role="PROVeedor" EntitySet="PROVeedors" />
+            <End Role="COntactoPRoveedor" EntitySet="COntactoPRoveedors" />
+          </AssociationSet>
+          <AssociationSet Name="FKrtamento" Association="Self.FKrtamento">
+            <End Role="PAIS" EntitySet="PAIS" />
+            <End Role="DEPArtamento" EntitySet="DEPArtamentoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DEtalleDEvolucionlucion" Association="Self.FK_DEtalleDEvolucionlucion">
+            <End Role="DEVOlucion" EntitySet="DEVOlucions" />
+            <End Role="DEtalleDEvolucion" EntitySet="DEtalleDEvolucions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DEtalleFActuraucto" Association="Self.FK_DEtalleFActuraucto">
+            <End Role="PRODucto" EntitySet="PRODuctoes" />
+            <End Role="DEtalleFActura" EntitySet="DEtalleFActuras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DEtalleFActuraura" Association="Self.FK_DEtalleFActuraura">
+            <End Role="FACTura" EntitySet="FACTuras" />
+            <End Role="DEtalleFActura" EntitySet="DEtalleFActuras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DEtalleFacturaCompraucto" Association="Self.FK_DEtalleFacturaCompraucto">
+            <End Role="PRODucto" EntitySet="PRODuctoes" />
+            <End Role="DEtalleFacturaCompra" EntitySet="DEtalleFacturaCompras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DEtalleFacturaComprauraCOmpra" Association="Self.FK_DEtalleFacturaComprauraCOmpra">
+            <End Role="FActuraCOmpra" EntitySet="FActuraCOmpras" />
+            <End Role="DEtalleFacturaCompra" EntitySet="DEtalleFacturaCompras" />
+          </AssociationSet>
+          <AssociationSet Name="FKDevollucionEmpleadoCArgo" Association="Self.FKDevollucionEmpleadoCArgo">
+            <End Role="EMpleadoCArgo" EntitySet="EMpleadoCArgoes" />
+            <End Role="DEVOlucion" EntitySet="DEVOlucions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMpleadoCArgo_EMPLeado" Association="Self.FK_EMpleadoCArgo_EMPLeado">
+            <End Role="EMPLeado" EntitySet="EMPLeadoes" />
+            <End Role="EMpleadoCArgo" EntitySet="EMpleadoCArgoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_EMPLeado" Association="Self.FK_Usuario_EMPLeado">
+            <End Role="EMPLeado" EntitySet="EMPLeadoes" />
+            <End Role="Usuario" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FKEmpleadoCArgoSucursal" Association="Self.FKEmpleadoCArgoSucursal">
+            <End Role="SUCUrsal" EntitySet="SUCUrsals" />
+            <End Role="EMpleadoCArgo" EntitySet="EMpleadoCArgoes" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturaCOmpraEmpleadoCArgo" Association="Self.FKFacturaCOmpraEmpleadoCArgo">
+            <End Role="EMpleadoCArgo" EntitySet="EMpleadoCArgoes" />
+            <End Role="FActuraCOmpra" EntitySet="FActuraCOmpras" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturaEmpleadoCArgo" Association="Self.FKFacturaEmpleadoCArgo">
+            <End Role="EMpleadoCArgo" EntitySet="EMpleadoCArgoes" />
+            <End Role="FACTura" EntitySet="FACTuras" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturaCOmpraProveedor" Association="Self.FKFacturaCOmpraProveedor">
+            <End Role="PROVeedor" EntitySet="PROVeedors" />
+            <End Role="FActuraCOmpra" EntitySet="FActuraCOmpras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Perfil_Perfil" Association="Self.FK_Usuario_Perfil_Perfil">
+            <End Role="Perfil" EntitySet="Perfils" />
+            <End Role="Usuario_Perfil" EntitySet="Usuario_Perfil" />
+          </AssociationSet>
+          <AssociationSet Name="FKProducto_TIpoPRoducto" Association="Self.FKProducto_TIpoPRoducto">
+            <End Role="TIpoPRoducto" EntitySet="TIpoPRoductoes" />
+            <End Role="PRODucto" EntitySet="PRODuctoes" />
+          </AssociationSet>
+          <AssociationSet Name="FKProductoPRoveedoructo" Association="Self.FKProductoPRoveedoructo">
+            <End Role="PRODucto" EntitySet="PRODuctoes" />
+            <End Role="PRoductoPRoveedor" EntitySet="PRoductoPRoveedors" />
+          </AssociationSet>
+          <AssociationSet Name="FKuctoPRoveedoreedor" Association="Self.FKuctoPRoveedoreedor">
+            <End Role="PROVeedor" EntitySet="PROVeedors" />
+            <End Role="PRoductoPRoveedor" EntitySet="PRoductoPRoveedors" />
+          </AssociationSet>
+          <AssociationSet Name="FKSucursalSupermercado" Association="Self.FKSucursalSupermercado">
+            <End Role="SUPErmercado" EntitySet="SUPErmercadoes" />
+            <End Role="SUCUrsal" EntitySet="SUCUrsals" />
+          </AssociationSet>
+          <AssociationSet Name="FKTelefono_TIpoTElefono" Association="Self.FKTelefono_TIpoTElefono">
+            <End Role="TIpoTElefono" EntitySet="TIpoTElefonoes" />
+            <End Role="TELEfono" EntitySet="TELEfonoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Perfil_Usuario" Association="Self.FK_Usuario_Perfil_Usuario">
+            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="Usuario_Perfil" EntitySet="Usuario_Perfil" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBSuperModelStoreContainer" CdmEntityContainer="DBSuperEntities">
+          <EntitySetMapping Name="CARGoes">
+            <EntityTypeMapping TypeName="DBSuperModel.CARGo">
+              <MappingFragment StoreEntitySet="CARGo">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Salario" ColumnName="Salario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CIUDads">
+            <EntityTypeMapping TypeName="DBSuperModel.CIUDad">
+              <MappingFragment StoreEntitySet="CIUDad">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="CodigoDepartamento" ColumnName="CodigoDepartamento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIEntes">
+            <EntityTypeMapping TypeName="DBSuperModel.CLIEnte">
+              <MappingFragment StoreEntitySet="CLIEnte">
+                <ScalarProperty Name="Documento" ColumnName="Documento" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COntactoPRoveedors">
+            <EntityTypeMapping TypeName="DBSuperModel.COntactoPRoveedor">
+              <MappingFragment StoreEntitySet="COntactoPRoveedor">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="DocumentoProveedor" ColumnName="DocumentoProveedor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEPArtamentoes">
+            <EntityTypeMapping TypeName="DBSuperModel.DEPArtamento">
+              <MappingFragment StoreEntitySet="DEPArtamento">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="CodigoPais" ColumnName="CodigoPais" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEtalleDEvolucions">
+            <EntityTypeMapping TypeName="DBSuperModel.DEtalleDEvolucion">
+              <MappingFragment StoreEntitySet="DEtalleDEvolucion">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="CodigoDevolucion" ColumnName="CodigoDevolucion" />
+                <ScalarProperty Name="CodigoProducto" ColumnName="CodigoProducto" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="ValorUnitario" ColumnName="ValorUnitario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEtalleFActuras">
+            <EntityTypeMapping TypeName="DBSuperModel.DEtalleFActura">
+              <MappingFragment StoreEntitySet="DEtalleFActura">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="CodigoProducto" ColumnName="CodigoProducto" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="ValorUnitario" ColumnName="ValorUnitario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEtalleFacturaCompras">
+            <EntityTypeMapping TypeName="DBSuperModel.DEtalleFacturaCompra">
+              <MappingFragment StoreEntitySet="DEtalleFacturaCompra">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="NumeroFactura" ColumnName="NumeroFactura" />
+                <ScalarProperty Name="CodigoProducto" ColumnName="CodigoProducto" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="ValorUnitario" ColumnName="ValorUnitario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEVOlucions">
+            <EntityTypeMapping TypeName="DBSuperModel.DEVOlucion">
+              <MappingFragment StoreEntitySet="DEVOlucion">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Documento" ColumnName="Documento" />
+                <ScalarProperty Name="NumeroFactura" ColumnName="NumeroFactura" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="CodigoEmpleado" ColumnName="CodigoEmpleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLeadoes">
+            <EntityTypeMapping TypeName="DBSuperModel.EMPLeado">
+              <MappingFragment StoreEntitySet="EMPLeado">
+                <ScalarProperty Name="Documento" ColumnName="Documento" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMpleadoCArgoes">
+            <EntityTypeMapping TypeName="DBSuperModel.EMpleadoCArgo">
+              <MappingFragment StoreEntitySet="EMpleadoCArgo">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Documento" ColumnName="Documento" />
+                <ScalarProperty Name="CodigoCargo" ColumnName="CodigoCargo" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+                <ScalarProperty Name="CodigoSucursal" ColumnName="CodigoSucursal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FACTuras">
+            <EntityTypeMapping TypeName="DBSuperModel.FACTura">
+              <MappingFragment StoreEntitySet="FACTura">
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Documento" ColumnName="Documento" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="CodigoEmpleado" ColumnName="CodigoEmpleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FActuraCOmpras">
+            <EntityTypeMapping TypeName="DBSuperModel.FActuraCOmpra">
+              <MappingFragment StoreEntitySet="FActuraCOmpra">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="CodigoEmpleado" ColumnName="CodigoEmpleado" />
+                <ScalarProperty Name="DocumentoProveedor" ColumnName="DocumentoProveedor" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="FechaPago" ColumnName="FechaPago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NOtaCReditoes">
+            <EntityTypeMapping TypeName="DBSuperModel.NOtaCRedito">
+              <MappingFragment StoreEntitySet="NOtaCRedito">
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="CodigoDevolucion" ColumnName="CodigoDevolucion" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="FechaValidez" ColumnName="FechaValidez" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PAIS">
+            <EntityTypeMapping TypeName="DBSuperModel.PAI">
+              <MappingFragment StoreEntitySet="PAIS">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Perfils">
+            <EntityTypeMapping TypeName="DBSuperModel.Perfil">
+              <MappingFragment StoreEntitySet="Perfil">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="PaginaNavegar" ColumnName="PaginaNavegar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODuctoes">
+            <EntityTypeMapping TypeName="DBSuperModel.PRODucto">
+              <MappingFragment StoreEntitySet="PRODucto">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="ValorUnitario" ColumnName="ValorUnitario" />
+                <ScalarProperty Name="CodigoTipoProducto" ColumnName="CodigoTipoProducto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRoductoPRoveedors">
+            <EntityTypeMapping TypeName="DBSuperModel.PRoductoPRoveedor">
+              <MappingFragment StoreEntitySet="PRoductoPRoveedor">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Documento" ColumnName="Documento" />
+                <ScalarProperty Name="CodigoProducto" ColumnName="CodigoProducto" />
+                <ScalarProperty Name="ValorUnitario" ColumnName="ValorUnitario" />
+                <ScalarProperty Name="FechaCotizacion" ColumnName="FechaCotizacion" />
+                <ScalarProperty Name="FechaValidez" ColumnName="FechaValidez" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROVeedors">
+            <EntityTypeMapping TypeName="DBSuperModel.PROVeedor">
+              <MappingFragment StoreEntitySet="PROVeedor">
+                <ScalarProperty Name="Documento" ColumnName="Documento" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="SitioWeb" ColumnName="SitioWeb" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SUCUrsals">
+            <EntityTypeMapping TypeName="DBSuperModel.SUCUrsal">
+              <MappingFragment StoreEntitySet="SUCUrsal">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="NitSupermercado" ColumnName="NitSupermercado" />
+                <ScalarProperty Name="CodigoCiudad" ColumnName="CodigoCiudad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SUPErmercadoes">
+            <EntityTypeMapping TypeName="DBSuperModel.SUPErmercado">
+              <MappingFragment StoreEntitySet="SUPErmercado">
+                <ScalarProperty Name="Nit" ColumnName="Nit" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="SitioWeb" ColumnName="SitioWeb" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DBSuperModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TELEfonoes">
+            <EntityTypeMapping TypeName="DBSuperModel.TELEfono">
+              <MappingFragment StoreEntitySet="TELEfono">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Documento" ColumnName="Documento" />
+                <ScalarProperty Name="CodigoTipoTelefono" ColumnName="CodigoTipoTelefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIpoPRoductoes">
+            <EntityTypeMapping TypeName="DBSuperModel.TIpoPRoducto">
+              <MappingFragment StoreEntitySet="TIpoPRoducto">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIpoTElefonoes">
+            <EntityTypeMapping TypeName="DBSuperModel.TIpoTElefono">
+              <MappingFragment StoreEntitySet="TIpoTElefono">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="DBSuperModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Documento_Empleado" ColumnName="Documento_Empleado" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Salt" ColumnName="Salt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario_Perfil">
+            <EntityTypeMapping TypeName="DBSuperModel.Usuario_Perfil">
+              <MappingFragment StoreEntitySet="Usuario_Perfil">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idPerfil" ColumnName="idPerfil" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
