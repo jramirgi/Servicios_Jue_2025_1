@@ -1,4 +1,5 @@
-﻿using Servicios_Jue.Models;
+﻿using Microsoft.Ajax.Utilities;
+using Servicios_Jue.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
@@ -121,9 +122,24 @@ namespace Servicios_Jue.Clases
                 return "Hubo un error al modificar el estado del producto: " + ex.Message;
             }
         }
-        public string GrabarImagenProducto(int Codigo, List<string> Imagenes)
+        public string GrabarImagenProducto(int idProducto, List<string> Imagenes)
         {
-            
+            try
+            {
+                foreach (string imagen in Imagenes)
+                {
+                    ImagenesProducto imagenProducto = new ImagenesProducto();
+                    imagenProducto.idProducto = idProducto;
+                    imagenProducto.NombreImagen = imagen;
+                    dbSuper.ImagenesProductoes.Add(imagenProducto);
+                    dbSuper.SaveChanges();
+                }
+                return "Se grabó la información en la base de datos";
+            }
+            catch(Exception ex)
+            {
+                return "Error: " + ex.Message;
+            }
         }
     }
 }

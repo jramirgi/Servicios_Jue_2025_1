@@ -54,9 +54,9 @@ namespace Servicios_Jue.Clases
                         File.Move(file.LocalFileName, Path.Combine(root, fileName));
                     }
                     //Se genera el proceso de gestión en la base de datos
-
+                    string RptaBD = ProcesarBD();
                     //Termina el ciclo, responde que se cargó el archivo correctamente
-                    return request.CreateResponse(System.Net.HttpStatusCode.OK, "Se cargaron los archivos en el servidor");
+                    return request.CreateResponse(System.Net.HttpStatusCode.OK, "Se cargaron los archivos en el servidor, " + RptaBD);
                 }
                 else
                 {
@@ -73,8 +73,8 @@ namespace Servicios_Jue.Clases
             switch(Proceso.ToUpper())
             {
                 case "PRODUCTO":
-
-                    return "";
+                    clsProducto producto = new clsProducto();
+                    return producto.GrabarImagenProducto(Convert.ToInt32(Datos), Archivos);
                 default:
                     return "No se ha definido el proceso en la base de datos";
             }
