@@ -52,5 +52,7 @@ namespace Servicios_Jue.Models
         public virtual DbSet<TIpoTElefono> TIpoTElefonoes { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
         public virtual DbSet<Usuario_Perfil> Usuario_Perfil { get; set; }
+        public virtual DbSet<FotosEmpleado> FotosEmpleados { get; set; }
+        public virtual DbSet<ImagenesProducto> ImagenesProductoes { get; set; }
     }
 }

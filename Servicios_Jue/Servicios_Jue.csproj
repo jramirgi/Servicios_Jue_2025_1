@@ -285,10 +285,12 @@
     <Compile Include="Clases\clsEmpleado.cs" />
     <Compile Include="Clases\clsProducto.cs" />
     <Compile Include="Clases\clsTipoProducto.cs" />
+    <Compile Include="Clases\clsUpload.cs" />
     <Compile Include="Controllers\EmpleadosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\TipoProductosController.cs" />
+    <Compile Include="Controllers\UploadFilesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -345,6 +347,12 @@
       <DependentUpon>DBSuper.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FActuraCOmpra.cs">
+      <DependentUpon>DBSuper.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FotosEmpleado.cs">
+      <DependentUpon>DBSuper.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ImagenesProducto.cs">
       <DependentUpon>DBSuper.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\NOtaCRedito.cs">
@@ -476,6 +484,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Archivos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\bootstrap.min.js.map" />

@@ -59,6 +59,10 @@
         <AssociationConnector Association="DBSuperModel.FKSucursalSupermercado" ManuallyRouted="false" />
         <AssociationConnector Association="DBSuperModel.FKTelefono_TIpoTElefono" ManuallyRouted="false" />
         <AssociationConnector Association="DBSuperModel.FK_Usuario_Perfil_Usuario" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DBSuperModel.FotosEmpleado" Width="1.5" PointX="3" PointY="35" />
+        <EntityTypeShape EntityType="DBSuperModel.ImagenesProducto" Width="1.5" PointX="7.5" PointY="27" />
+        <AssociationConnector Association="DBSuperModel.FK_FotosEmpleados_EMPLeado" />
+        <AssociationConnector Association="DBSuperModel.FK_ImagenesProducto_PRODucto" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
