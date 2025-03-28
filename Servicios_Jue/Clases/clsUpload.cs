@@ -16,7 +16,7 @@ namespace Servicios_Jue.Clases
         public string Proceso { get; set; }
         public HttpRequestMessage request { get; set; }
         private List<string> Archivos;
-        public async Task<HttpResponseMessage> GrabarArchivo()
+        public async Task<HttpResponseMessage> GrabarArchivo(bool Actualizar)
         {
             if (!request.Content.IsMimeMultipartContent())
             {
@@ -26,6 +26,7 @@ namespace Servicios_Jue.Clases
             var provider = new MultipartFormDataStreamProvider(root);
             try
             {
+                bool Existe = false;
                 //Lee el contenido de los archivos
                 await request.Content.ReadAsMultipartAsync(provider);
                 if (provider.FileData.Count > 0)
@@ -44,19 +45,49 @@ namespace Servicios_Jue.Clases
                         }
                         if (File.Exists(Path.Combine(root, fileName)))
                         {
-                            //El archivo ya existe en el servidor, no se va a cargar, se va a eliminar el temporal y se devolverá un error
-                            File.Delete(Path.Combine(root, file.LocalFileName));
-                            return request.CreateErrorResponse(System.Net.HttpStatusCode.InternalServerError, "El archivo ya existe");
+                            if (Actualizar)
+                            {
+                                //El archivo ya existe en el servidor, no se va a cargar, se va a eliminar el temporal y se devolverá un error
+                                File.Delete(Path.Combine(root, fileName));
+                                //actualiza el nombre del primer archivo
+                                File.Move(file.LocalFileName, Path.Combine(root, fileName));
+                                return request.CreateResponse(System.Net.HttpStatusCode.OK, "Se actualizó la imagen");
+                            }
+                            else
+                            {
+                                //El archivo ya existe en el servidor, no se va a cargar, se va a eliminar el temporal y se devolverá un error
+                                File.Delete(Path.Combine(root, file.LocalFileName));
+                                Existe = true;
+                            }
+                            //return request.CreateErrorResponse(System.Net.HttpStatusCode.InternalServerError, "El archivo ya existe");
                         }
-                        //Agrego en una lista el nombre de los archivos que se cargaron 
-                        Archivos.Add(fileName);
-                        //Renombra el archivo temporal
-                        File.Move(file.LocalFileName, Path.Combine(root, fileName));
+                        else
+                        {
+                            if (!Actualizar)
+                            {
+                                Existe = false;
+                                //Agrego en una lista el nombre de los archivos que se cargaron 
+                                Archivos.Add(fileName);
+                                //Renombra el archivo temporal
+                                File.Move(file.LocalFileName, Path.Combine(root, fileName));
+                            }
+                            else
+                            {
+                                return request.CreateErrorResponse(System.Net.HttpStatusCode.InternalServerError, "El archivo no existe, se debe agregar");
+                            }
+                        }
                     }
-                    //Se genera el proceso de gestión en la base de datos
-                    string RptaBD = ProcesarBD();
-                    //Termina el ciclo, responde que se cargó el archivo correctamente
-                    return request.CreateResponse(System.Net.HttpStatusCode.OK, "Se cargaron los archivos en el servidor, " + RptaBD);
+                    if (!Existe)
+                    {
+                        //Se genera el proceso de gestión en la base de datos
+                        string RptaBD = ProcesarBD();
+                        //Termina el ciclo, responde que se cargó el archivo correctamente
+                        return request.CreateResponse(System.Net.HttpStatusCode.OK, "Se cargaron los archivos en el servidor, " + RptaBD);
+                    }
+                    else
+                    {
+                        return request.CreateErrorResponse(System.Net.HttpStatusCode.Conflict, "El archivo ya existe");
+                    }
                 }
                 else
                 {
@@ -64,6 +95,32 @@ namespace Servicios_Jue.Clases
                 }
             }
             catch (Exception ex)
+            {
+                return request.CreateErrorResponse(System.Net.HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+        public HttpResponseMessage DescargarArchivo(string Imagen)
+        {
+            try
+            {
+                string Ruta = HttpContext.Current.Server.MapPath("~/Archivos");
+                string Archivo = Path.Combine(Ruta, Imagen);
+                if (File.Exists(Archivo))
+                {
+                    HttpResponseMessage response = new HttpResponseMessage(System.Net.HttpStatusCode.OK);
+                    var stream = new FileStream(Archivo, FileMode.Open);
+                    response.Content = new StreamContent(stream);
+                    response.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
+                    response.Content.Headers.ContentDisposition.FileName = Imagen;
+                    response.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
+                    return response;
+                }
+                else
+                {
+                    return request.CreateErrorResponse(System.Net.HttpStatusCode.NoContent, "No se encontró el archivo");
+                }
+            }
+            catch(Exception ex)
             {
                 return request.CreateErrorResponse(System.Net.HttpStatusCode.InternalServerError, ex.Message);
             }

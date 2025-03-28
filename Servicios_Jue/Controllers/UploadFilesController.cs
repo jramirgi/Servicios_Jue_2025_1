@@ -19,7 +19,20 @@ namespace Servicios_Jue.Controllers
             upload.Datos = Datos;
             upload.Proceso = Proceso;
             upload.request = request;
-            return await upload.GrabarArchivo();
+            return await upload.GrabarArchivo(false);
+        }
+        [HttpGet]
+        public HttpResponseMessage ConsultarArchivo(string NombreImagen)
+        {
+            clsUpload upload = new clsUpload();
+            return upload.DescargarArchivo(NombreImagen);
+        }
+        [HttpPut]
+        public async Task<HttpResponseMessage> ActualizarArchivo(HttpRequestMessage request)
+        {
+            clsUpload upload = new clsUpload();
+            upload.request = request;
+            return await upload.GrabarArchivo(true);
         }
     }
 }
