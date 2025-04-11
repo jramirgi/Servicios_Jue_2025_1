@@ -10,6 +10,7 @@ using System.Web.Http;
 namespace Servicios_Jue.Controllers
 {
     [RoutePrefix("api/UploadFiles")]
+    [Authorize]
     public class UploadFilesController : ApiController
     {
         [HttpPost]

@@ -10,6 +10,7 @@ using System.Web.Http;
 namespace Servicios_Jue.Controllers
 {
     [RoutePrefix("api/Empleados")]
+    [Authorize]
     public class EmpleadosController : ApiController
     {
         //GET: Se utiliza para consultar información, no se debe modificar la base de datos
