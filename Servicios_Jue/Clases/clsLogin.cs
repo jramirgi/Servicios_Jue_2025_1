@@ -14,6 +14,10 @@ namespace Servicios_Jue.Clases
         private DBSuperEntities dbSuper = new DBSuperEntities();
         public Login login { get; set; }
         public LoginRespuesta loginRespuesta { get; set; }
+        public string CambiarClave()
+        {
+            return "Sin implementar";
+        }
         public bool ValidarUsuario()
         {
             try
