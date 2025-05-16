@@ -6,9 +6,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Servicios_Jue.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/Login")]
     //[AllowAnonymous]: Directiva para que el servicio no requiera de autenticación
     //[Authorize]: Directiva para que el servicio necesite de autenticación y un token para que se pueda procesar

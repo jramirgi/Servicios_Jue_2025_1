@@ -13,6 +13,8 @@ namespace Servicios_Jue
             // Web API configuration and services
             //Habilitar el esquema de autenticación, para la validación del token
             config.MessageHandlers.Add(new TokenValidationHandler());
+            //Habilitar el cors
+            config.EnableCors();
 
             // Web API routes
             config.MapHttpAttributeRoutes();
