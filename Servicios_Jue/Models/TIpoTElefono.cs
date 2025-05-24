@@ -11,6 +11,7 @@ namespace Servicios_Jue.Models
 {
     using System;
     using System.Collections.Generic;
+    using Newtonsoft.Json;
     
     public partial class TIpoTElefono
     {
@@ -23,7 +24,8 @@ namespace Servicios_Jue.Models
         public int Codigo { get; set; }
         public string Nombre { get; set; }
         public bool Activo { get; set; }
-    
+        [JsonIgnore]
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TELEfono> TELEfonoes { get; set; }
     }

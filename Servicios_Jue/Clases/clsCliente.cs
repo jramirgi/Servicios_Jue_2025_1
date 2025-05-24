@@ -82,12 +82,10 @@ namespace Servicios_Jue.Clases
                    {
                        Editar = "<img src=\"../Imagenes/Edit.png\" onclick=\"Editar('" + g.Key.Documento + "', '" + g.Key.Nombre + "', '" + 
                                 g.Key.PrimerApellido + "', '" + g.Key.SegundoApellido + "', '" + g.Key.FechaNacimiento + 
-                                "', '" + g.Key.Email + "', '" + g.Key.Direccion + "')\"/>",
+                                "', '" + g.Key.Email + "', '" + g.Key.Direccion + "')\" style=\"cursor:grab\"/>",
                        Nro_telefonos = g.Count(),
                        Documento = g.Key.Documento,
-                       Nombre = g.Key.Nombre,
-                       PrimerApellido = g.Key.PrimerApellido,
-                       SegundoApellido = g.Key.SegundoApellido,
+                       Cliente = g.Key.PrimerApellido + " " + g.Key.SegundoApellido + " " + g.Key.Nombre,
                        FechaNacimiento = g.Key.FechaNacimiento,
                        Email = g.Key.Email,
                        Direccion = g.Key.Direccion

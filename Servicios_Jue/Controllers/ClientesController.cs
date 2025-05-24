@@ -62,7 +62,14 @@ namespace Servicios_Jue.Controllers
             clsCliente _ciente = new clsCliente();
             return _ciente.Consultar(Documento);
         }
-        
+        [HttpGet]
+        [Route("ConsultarTodos")]
+        public List<CLIEnte> ConsultarTodos()
+        {
+            //Se crea el objeto de la clase ClsCliente, y se invoca el método Consultar
+            clsCliente _ciente = new clsCliente();
+            return _ciente.ConsultarTodos();
+        }
         [HttpGet]
         [Route("ClientesConTelefonos")]
         public IQueryable ClientesConTelefonos()
