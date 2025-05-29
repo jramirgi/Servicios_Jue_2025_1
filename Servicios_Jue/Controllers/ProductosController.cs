@@ -16,6 +16,13 @@ namespace Servicios_Jue.Controllers
     public class ProductosController : ApiController
     {
         [HttpGet]
+        [Route("ListarProductosXTipo")]
+        public IQueryable ListarProductosXTipo(int TipoProducto)
+        {
+            clsProducto producto = new clsProducto();
+            return producto.ListarProductosXTipo(TipoProducto);
+        }
+        [HttpGet]
         [Route("ConsultarImagenes")]
         public IQueryable ConsultarImagenes(int idProducto)
         {

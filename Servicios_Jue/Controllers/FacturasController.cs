@@ -1,4 +1,5 @@
 ﻿using Servicios_Jue.Clases;
+using Servicios_Jue.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,13 +24,12 @@ namespace Servicios_Jue.Controllers
         }
         [HttpPost]
         [Route("GrabarFactura")]
-        public string GrabarFactura()//[FromBody] FacturaDetalle factura)
+        public string GrabarFactura([FromBody] FacturaDetalle facturaDet)//[FromBody] FacturaDetalle factura)
         {
-            return "";/*
-            clsFactura Factura = new clsFactura();
-            Factura.factura = factura.factura;
-            Factura.detalleFactura = factura.detalle;
-            return Factura.GrabarFactura();*/
+            clsFactura factura = new clsFactura();
+            factura.factura = facturaDet.factura;
+            factura.detalleFactura = facturaDet.detalle;
+            return factura.GrabarFactura();
         }
         [HttpDelete]
         [Route("Eliminar")]

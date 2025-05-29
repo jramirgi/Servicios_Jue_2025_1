@@ -17,6 +17,13 @@ namespace Servicios_Jue.Controllers
     public class TipoProductosController : ApiController
     {
         [HttpGet]
+        [Route("LlenarCombo")]
+        public List<TIpoPRoducto> LlenarCombo()
+        {
+            clsTipoProducto tipoProducto = new clsTipoProducto();
+            return tipoProducto.LlenarCombo();
+        }
+        [HttpGet]
         [Route("ConsultarTodos")]
         public List<TIpoPRoducto> ConsultarTodos()
         {

@@ -394,6 +394,7 @@
     <Compile Include="Models\ImagenesProducto.cs">
       <DependentUpon>DBSuper.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\libFactura.cs" />
     <Compile Include="Models\libLogin.cs" />
     <Compile Include="Models\NOtaCRedito.cs">
       <DependentUpon>DBSuper.tt</DependentUpon>
