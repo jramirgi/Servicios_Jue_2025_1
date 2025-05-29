@@ -75,5 +75,12 @@ namespace Servicios_Jue.Clases
                 return ex.Message;
             }
         }
+        public List<TIpoPRoducto> LlenarCombo()
+        {
+            return dbSuper.TIpoPRoductoes
+                .Where(t => t.Activo == true)
+                .OrderBy(t => t.Nombre)
+                .ToList();
+        }
     }
 }

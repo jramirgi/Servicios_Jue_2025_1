@@ -159,5 +159,21 @@ namespace Servicios_Jue.Clases
                        Imagen = I.NombreImagen
                    };
         }
+        public IQueryable ListarProductosXTipo(int TipoProducto)
+        {
+            //En SQL la instrucción es SELECT - FROM - WHERE
+            //En linq la instrucción es FROM - WHERE - SELECT
+            return from P in dbSuper.Set<PRODucto>()
+                   join TP in dbSuper.Set<TIpoPRoducto>()
+                   on P.CodigoTipoProducto equals TP.Codigo
+                   //Aca iría el where, si se requiere
+                   where TP.Codigo == TipoProducto
+                   orderby TP.Nombre, P.Nombre //Order by si se requiere
+                   select new //Finalmente, se presentan los campos que se van a mostrar
+                   {
+                       Codigo = P.Codigo + "|" + P.ValorUnitario,
+                       Nombre = P.Nombre
+                   };
+        }
     }
 }
